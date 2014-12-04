@@ -130,6 +130,29 @@ template<typename T> T backtrack(T m, T n)
 	return bt(0,0,m,n);
 }
 
+template<typename T>
+int bt_memozation(T x, T y, T m, T n, vector<vector<T>>& mat)
+{
+    if (x==m && y==n) return 1;
+    else if (x>m || y>n) return 0;
+    
+    if (mat[x+1][y] == -1) mat[x+1][y] = bt_memozation(x+1,y,m,n,mat);
+    if (mat[x][y+1] == -1) mat[x][y+1] = bt_memozation(x,y+1,m,n,mat);
+    
+    return mat[x+1][y] + mat[x][y+1];
+}
+
+template<typename T> void bt_memozation(T x, T y)
+{
+    vector<vector<int>>mat(m+2,vector<int>(n+2,0));
+    
+    for (auto it=mat.begin(); it!=mat.end()-1; ++it) 
+        for (auto itr=it->begin(); itr!=it->end()-1; ++itr)
+            *itr = -1;
+    print(mat);
+    mat[0][0] = bt_memozation(0,0,x,x,mat);
+    print(mat);
+}
 /*****************************************************************************/
 int main()
 {
