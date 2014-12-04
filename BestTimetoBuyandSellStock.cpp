@@ -1,4 +1,4 @@
-I /***
+/***
     Say you have an array for which the ith element is the 
     price of a given stock on day i.
 
@@ -29,7 +29,7 @@ I /***
 typedef unsigned int uint;
 using namespace std;
 
-template<typename T> void print(const vector<T>&
+template<typename T> void print(const vector<T>&);
 
 ///////////////////////////////////////////////////////////////////////
 template<typename T>
@@ -46,7 +46,7 @@ template<typename T> void print(const vector<T>& v)
 {
 	for (auto itr=v.begin(); itr!=v.end();++itr)
 			cout<<*itr <<" ";
-		}
+		
 	cout<<endl;
 }
 
@@ -63,7 +63,7 @@ template<typename T> T Min(T x, T y)
 
 
 
-/***********************************************************************************/
+/**************************************************************************/
 int buySell(vector<int>& v)
 {
 	int max_profit=0;
