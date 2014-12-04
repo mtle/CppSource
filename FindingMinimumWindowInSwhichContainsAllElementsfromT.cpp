@@ -67,63 +67,29 @@ leetcode: http://leetcode.com/2010/11/finding-minimum-window-in-s-which.html
 typedef unsigned int uint;
 using namespace std;
 
-template<typename T> void printArray(const vector<T> &v, int lo=0, int hi=0) const;
-template<typename T> void printVector(const vector<T> &v, int lo=0, int hi=0) const;
-template<typename T> void printMatrix(const vector<vector<T>>&, int row=0, int col=0) const;
-
-///////////////////////////////////////////////////////////////////////
-
-template<typename T> T Max(T x, T y)
+template<typename U, typename V> void printMap (unordered_map<U, V>& m)
 {
-	return (x >= y) ? x : y;
-}
-
-template<typename T> void printMatrix(const vector<vector<T>>& v, int row, int col) const
-{
-	for( auto j=0; j<col; ++j ) {
-   	 cout<<endl;
-   	 for ( auto i=0; i<row; ++i ) {
-   		 cout<<v[j][i]<<" ";
-   	 }
+	cout <<"\nMap<char, int>: ";
+	for ( auto x=m.begin(); x!=m.end(); ++x )  {
+		cout<<"(" << x->first << "," << x->second << ")" << " ";
 	}
+	cout << endl;
 }
-
-template<typename T> void printArray(const vector<T> &v, int lo, int hi) const
+pair<int,int> minWindow (const string& txt, string const &pat)
 {
-	cout<<"\n[";
-    if ( 0==lo && 0==hi ) {
-   	 for ( auto x : v ) {
-   		 cout<<x<<", ";
-   	 }
-    } else if ( lo>=0 && hi>0 ) {
-   	 for (auto x=lo; x<=hi; ++x) {
-   		 cout<<v.at(x) << ", ";
-   	 }
-    } else {
-    	return;
-	}
-	cout<<"]"<<endl;
+	unordered_map<char,int> hasChar;
+	unordered_map<char,int> hasFound;
+	
+	for ( auto x : pat ) hasChar[x]++;
+	printMap(hasChar);
+	
+	return make_pair(0,0);
 }
-
-template<typename T> void printVector(const vector<T> &v, int lo, int hi) const
-{
-	cout<<"\n[";
-    if ( 0==lo && 0==hi ) {
-   	 for ( auto x : v ) {
-   		 cout<<x<<", ";
-   	 }
-    } else if ( lo>=0 && hi>0 ) {
-   	 for (auto x=lo; x<=hi; ++x) {
-   		 cout<<v.at(x) << ", ";
-   	 }
-    } else {
-    	return;
-	}
-	cout<<"]"<<endl;
-}
-
 /*****************************************************************************/
 int main()
 {
-  
+    string txt{"ADOBECODEBANC"};
+    string pat{"ABC"};
+    
+    minWindow(txt, pat);
 }
