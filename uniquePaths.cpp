@@ -32,7 +32,19 @@ template<typename T> void printArray(const vector<T> &v, int lo=0, int hi=0) con
 template<typename T> void printVector(const vector<T> &v, int lo=0, int hi=0) const;
 template<typename T> void printMatrix(const vector<vector<T>>&, int row=0, int col=0) const;
 
-///////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+typedef vector<vector<int>> Matrix;
+
+void print(const Matrix& m) 
+{ 
+	for (size_t i=0; i<m.size(); ++i) { 
+		cout<<endl; 
+		for (size_t j=0; j<m[0].size();++j) 
+			cout<<m[i][j] <<" "; 
+		} 
+	cout<<endl; 
+
+}
 
 template<typename T> T Max(T x, T y)
 {
@@ -85,18 +97,16 @@ template<typename T> void printVector(const vector<T> &v, int lo, int hi) const
 
 int bt_dp(int x, int y, int r, int c)
 {
-	vector<int>w{c+1,0};
-	vector<vector<int>>v{r+1,vector<int>(w)};
+	vector<int>w(c+2,0);
+	vector<vector<int>>v(r+2,vector<int>(w));
 	
-	for (int i=1;i<=r;++i) 
-		for (int j=1; j<=c; ++j) 
-			v[i][j] = -1;
+	v[1][0] = 1;
 			
-	for (int i=1; i<=r; ++i)
-		for (int j=1; j<=c; ++j)
+	for (int i=1; i<=r+1; ++i)
+		for (int j=1; j<=c+1; ++j)
 			v[i][j] = v[i-1][j] + v[i][j-1];
 			
-	return v[i][j];
+	return v[r+1][c+1];
 	
 }
 
