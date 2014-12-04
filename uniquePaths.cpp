@@ -83,6 +83,34 @@ template<typename T> void printVector(const vector<T> &v, int lo, int hi) const
 	cout<<"]"<<endl;
 }
 
+int bt_dp(int x, int y, int r, int c)
+{
+	vector<int>w{c+1,0};
+	vector<vector<int>>v{r+1,vector<int>(w)};
+	
+	for (int i=1;i<=r;++i) 
+		for (int j=1; j<=c; ++j) 
+			v[i][j] = -1;
+			
+	for (int i=1; i<=r; ++i)
+		for (int j=1; j<=c; ++j)
+			v[i][j] = v[i-1][j] + v[i][j-1];
+			
+	return v[i][j];
+	
+}
+
+int bt(int x, int y, int m, int n) 
+{
+  if (x==m && y==n) return 1;
+  else if (x>m || y>n) return 0;
+  return bt(x+1,y,m,n) + bt(x,y+1,m,n);
+}
+int backtrack(int m, int n)
+{
+	return bt(0,0,m,n);
+}
+
 /*****************************************************************************/
 int main()
 {
