@@ -75,16 +75,30 @@ template<typename U, typename V> void printMap (unordered_map<U, V>& m)
 	}
 	cout << endl;
 }
+
 pair<int,int> minWindow (const string& txt, string const &pat)
 {
 	unordered_map<char,int> hasChar;
 	unordered_map<char,int> hasFound;
 	
-	for ( auto x : pat ) hasChar[x]++;
-	printMap(hasChar);
+	for ( auto x : pat ) {
+	    ++hasChar[x];
+	    hasFound[x] = 0;
+	}
+	for ( auto x : txt ) {
+	    auto search = hasFound.find(x);
+	    if ( search != hasFound.end() )
+	        ++hasFound[x];
+	}
+	
+	for ( size_t i=0, j=txt.size()-1; i<=j; ++i, --j ) {
+	    
+	}
+	printMap(hasFound);
 	
 	return make_pair(0,0);
 }
+
 /*****************************************************************************/
 int main()
 {
