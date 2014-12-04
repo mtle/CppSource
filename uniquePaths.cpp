@@ -28,9 +28,9 @@ How many possible unique paths are there?
 typedef unsigned int uint;
 using namespace std;
 
-template<typename T> void printArray(const vector<T> &v, int lo=0, int hi=0) const;
-template<typename T> void printVector(const vector<T> &v, int lo=0, int hi=0) const;
-template<typename T> void printMatrix(const vector<vector<T>>&, int row=0, int col=0) const;
+template<typename T> void printArray(const vector<T> &v, int lo=0, int hi=0);
+template<typename T> void printVector(const vector<T> &v, int lo=0, int hi=0);
+template<typename T> void printMatrix(const vector<vector<T>>&, int row=0, int col=0);
 
 //////////////////////////////////////////////////////
 typedef vector<vector<int>> Matrix;
@@ -95,7 +95,7 @@ template<typename T> void printVector(const vector<T> &v, int lo, int hi) const
 	cout<<"]"<<endl;
 }
 
-int bt_dp(int x, int y, int r, int c)
+template<typename T> T bt_dp(T x, T y, T r, int c)
 {
 	vector<int>w(c+2,0);
 	vector<vector<int>>v(r+2,vector<int>(w));
@@ -110,13 +110,13 @@ int bt_dp(int x, int y, int r, int c)
 	
 }
 
-int bt(int x, int y, int m, int n) 
+template<typename T> T bt(T x, T y, T m, T n) 
 {
   if (x==m && y==n) return 1;
   else if (x>m || y>n) return 0;
   return bt(x+1,y,m,n) + bt(x,y+1,m,n);
 }
-int backtrack(int m, int n)
+template<typename T> T backtrack(T m, T n)
 {
 	return bt(0,0,m,n);
 }
@@ -124,5 +124,6 @@ int backtrack(int m, int n)
 /*****************************************************************************/
 int main()
 {
-  
+	cout<<"backtrack(2,2): " << backtrack(2,2) << endl;
+    cout<<"bt_dp(2,2): " << bt_dp(0,0,2,2) << endl;
 }
