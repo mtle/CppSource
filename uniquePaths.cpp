@@ -32,6 +32,15 @@ template<typename T> void printArray(const vector<T> &v, int lo=0, int hi=0);
 template<typename T> void printVector(const vector<T> &v, int lo=0, int hi=0);
 template<typename T> void printMatrix(const vector<vector<T>>&, int row=0, int col=0);
 
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec)
+{
+    for (auto& el : vec) {
+        os << "[" << el << "] ";
+    }
+    return os;
+}
+
 //////////////////////////////////////////////////////
 typedef vector<vector<int>> Matrix;
 
